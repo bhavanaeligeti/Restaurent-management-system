@@ -23,10 +23,10 @@ const slotSchema = new Schema({
         type:String,
         required:true
     },
-    slott : {
-        type:String,
-        required:true
-    },
+    // slott : {
+    //     type:String,
+    //     required:true
+    // },
     date : {
         type:String,
         required:true

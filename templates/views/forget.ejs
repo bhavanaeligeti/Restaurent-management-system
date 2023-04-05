@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <h2 class="text-center">Reset Your Password</h2>
+          <div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+              <div class="panel panel-info">
+                  <div class="panel-heading">
+                      <div class="panel-title"> Reset</div>
+                       </div>  
+                  <div class="panel-body">
+                  <% if(msg !=''){ %>
+                    <p style="text-align: center; color: red;">   <%= msg %></p>
+                    <% } %>
+                              
+                          <% if(succ !='' || errors !=''){ %>
+                            
+                            <form action="/mail" id="EmployeeForm" class="form-horizontal" method="post"  role="form">
+                              <% if(succ !=''){ %>
+                                <p style="text-align: center; color: green;">   <%= succ %></p>
+                                <% } %>
+                                <% if(errors !=''){ %>
+                                  <p style="text-align: center; color: red;">   <%= errors %></p>
+                                  <% } %>
+                              <div class="form-group">
+                                  <label for="email" class="col-md-3 control-label">Email</label>
+                                  <div class="col-md-9">
+                                      <input type="text" class="form-control" name="email" value="<%= gmail %>" disabled required>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <label for="otp" class="col-md-3 control-label">OTP</label>
+                                  <div class="col-md-9">
+                                      <input type="text" class="form-control" name="code" pattern="[0-9]{6}$" placeholder="xxxxxx" maxlength="6"  required>
+                                  </div>
+                              </div>
+                        
+                            <div class="form-group">
+                                <!-- Button -->                                        
+                                <div class="col-md-offset-3 col-md-9">
+                                <input type="submit" name="submit" value="Reset" class="btn btn-success">   
+                                </div>
+                            </div>
+
+
+
+                        
+                        <% } else { %> 
+                          <form action="/forget" id="EmployeeForm" class="form-horizontal" method="post"  role="form">
+                          <div class="form-group">
+                            <label for="email" class="col-md-3 control-label">Email</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Enter Your Email"  required>
+                            </div>
+                        </div>
+                     
+                      <div class="form-group">
+                          <!-- Button -->                                        
+                          <div class="col-md-offset-3 col-md-9">
+                          <input type="submit" name="submit" value="Reset" class="btn btn-primary">   
+                          </div>
+                      </div>
+                    </form>
+                          <% } %>
+                          
+                      </form>
+                   </div>
+              </div>
+  
+         
+         
+          
+   </div> 
+      </div>
+    </div>
+  </body>
+</html>

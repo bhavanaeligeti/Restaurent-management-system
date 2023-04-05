@@ -161,13 +161,13 @@
                       </div>
                           <% } %>
               <div>
-                <input type="text" class="form-control" name="name" placeholder="Your Name" />
+                <input type="text" class="form-control" name="name" placeholder="Your Name" pattern="[A-Za-z]{3,}">
               </div>
               <div>
-                <input type="text" class="form-control" name="pnumber" placeholder="Phone Number" />
+                <input type="text" class="form-control" name="pnumber" placeholder="Phone Number" maxlength="10" pattern="[6-9]{1}[0-9]{9}">
               </div>
               <div>
-                <input type="email" class="form-control" name="email" placeholder="Your Email" />
+                <input type="email" class="form-control" name="email" placeholder="Your Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
               </div>
               <div>
                 <select class="form-control nice-select wide" name="person">
@@ -192,10 +192,10 @@
                 <label>Time slot from</label>
                 <input type="time"  class="form-control" name="slotf" min="09:00" max="23:00" required>
               </div>
-              <div>
+              <!-- <div>
                 <label>to</label>
                 <input type="time"  class="form-control" name="slott" min="09:00" max="23:00" required>
-              </div>
+              </div> -->
               <div>
                 <input type="date" class="form-control" name="date" min="2023-04-02" max="2023-06-01">
               </div>

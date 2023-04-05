@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 // const hbs = require("hbs")
+const nodemailer = require('nodemailer')
 const ejs = require("ejs")
 require("./db/connect")
 const userModel = require('./models/student') 
@@ -13,6 +14,7 @@ const cardModel = require("./models/card")
 var jwt = require('jsonwebtoken');
 const multer = require("multer");
 const qtyModel = require("./models/checkout");
+const otpModel = require('./models/otp')
 
 const port = process.env.PORT || 5000;
 
@@ -85,6 +87,114 @@ return res.render('signup', { title: 'Password Management System', msg:'Email Al
   });
 }
 
+app.post('/forget', async (req,res)=> {
+  var email = req.body.email;
+  var minm = 100000;
+    var maxm = 999999;
+  var code = Math.floor(Math.random() * (maxm - minm + 1)) + minm;
+  var expiryt = new Date().getTime() + 300*1000;
+  const checkUser = userModel.findOne({ email:email });
+  checkUser.exec((err, data) => {
+   if(data){
+
+    var userDetails = new otpModel({
+    
+      email:email,
+      code:code,
+      expiryt:expiryt
+      
+    });
+    userDetails.save((err, doc) => {
+      if (err) throw err;
+      res.render('forget',{title:"college dunia", msg:"",succ:'OTP send in your mail',gmail:email,errors:''});
+   
+    });
+    let transporter = nodemailer.createTransport({
+      service:"gmail",
+      auth : {
+        user:"projectdissertation.universal@gmail.com",
+        pass:"dffvlycylavsfflk"
+      },
+      tls:{
+        rejectUnauthorized:false
+      }
+    })
+    let mailOptions = {
+      from: "projectdissertation.universal@gmail.com",
+      to: email,
+      subject:"OTP for resetting password",
+      text:`Forget Password of FineDine is :  ${code}`
+    }
+  
+    transporter.sendMail(mailOptions,(err,success)=>{
+    if(err) {
+      throw err;
+    }
+    else {
+      console.log("successfully sent")
+    }
+    })
+    }
+    else {
+      res.render("forget",{title:"FineDine", msg:"Email not exist",succ:'',errors:''})
+    }
+  })
+  
+  })  
+
+  app.get('/forget',  (req,res)=> {
+    res.render('forget',{ title: 'FineDine', msg: '',succ:'',email:'',errors:'' })
+  })
+
+  app.post('/mail', async (req,res)=> {
+ 
+    const code = req.body.code;
+  
+    const checkUser = otpModel.findOne({ code:code });
+    checkUser.exec((err, data) => {
+     if(data) {
+      const gmail= data.email;
+      res.render('generate',{title:"Create New Password",msg:'',gmail:gmail})
+     }
+     else {
+      res.render('forget',{ title: 'FineDine', msg: '',succ:'',email:'',errors:'OTP NOT MATCHED' })
+    }
+  })
+  
+  })
+
+  app.get('/generate',(req,res)=> {
+    res.render("generate",{title:"Create New Password",msg:'',gmail:''})
+  })
+  app.post('/generate',async (req,res)=> {
+    const email = req.body.gmail;
+    const password = req.body.password;
+    const confpassword = req.body.confpassword;
+    if(!password || !confpassword) {
+      res.render("generate",{title:"Create New Password",msg:'Please fill all details',gmail:''})
+    }
+    else {
+      if(password == confpassword){
+        
+        const checkUser = userModel.findOne({ email:email });
+        await checkUser.exec((err,data)=>{
+          if(err) throw err
+          const id = data._id;
+          var passdelete = userModel.findByIdAndUpdate(id, { password:password,
+   confirmpassword:confpassword });
+          passdelete.exec(function (err) {
+            if (err) throw err;
+            res.render("generate",{title:"Create New Password",msg:'Password Reset successfully',gmail:''});
+          });
+        })
+    
+   
+      }
+      else {
+        res.render("generate",{title:"Create New Password",msg:'Password and confirm password not matched',gmail:''});
+      }
+    }
+  })
 
 app.get("/add-new-category", (req, res, next) => {
   var loginUser = localStorage.getItem('loginUser');
@@ -216,11 +326,11 @@ app.post('/table', function (req, res, next) {
   const email = req.body.email;
   const pnumber = req.body.pnumber;
   const slotf = req.body.slotf;
-  const slott = req.body.slott;
+  // const slott = req.body.slott;
   const date = req.body.date;
   const person = req.body.person;
   const username = loginUser;
- if(!name || !email || !pnumber || !slotf || !slott || !date || !person) {
+ if(!name || !email || !pnumber || !slotf || !date || !person) {
   res.render("book", { title: 'Restaurent Management System', msg:'Please fill all details',success:'' })
  }
  else {
@@ -231,7 +341,6 @@ app.post('/table', function (req, res, next) {
      email:email,
      pnumber:pnumber,
      slotf:slotf,
-     slott:slott,
      date:date,
      person:person,
      usename:username
@@ -366,6 +475,18 @@ app.get('/password-detail/delete/:id', checkLoginUser, function (req, res, next)
 });
 
 app.get('/slot/delete/:id', checkLoginUser, function (req, res, next) {
+  var loginUser = localStorage.getItem('loginUser');
+  if (loginUser) {
+    var id = req.params.id;
+    var passdelete = slotModel.findByIdAndDelete(id);
+    passdelete.exec(function (err) {
+      if (err) throw err;
+      res.redirect('/personl');
+    });
+  }
+});
+
+app.get('/slots/delete/:id', checkLoginUser, function (req, res, next) {
   var loginUser = localStorage.getItem('loginUser');
   if (loginUser) {
     var id = req.params.id;
