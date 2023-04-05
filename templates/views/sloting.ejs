@@ -1,0 +1,48 @@
+<%- include('header') %>
+
+<div class="container">
+    <div class="row">
+        <h1>View Password Lists</h1>
+        <br>
+     <table class="table table-striped table-primary">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th> From </th>
+          <th> TO</th>
+          <th> Date </th>
+          <th> Persons </th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+       <% if(records.length>0){
+        records.forEach(function(row){
+       
+        %>
+        <tr>
+          <td><%= row.name %></td>
+          <td><%= row.email %></td>
+          <td><%= row.pnumber %></td>
+          <td><%= row.slotf %></td>
+          <td><%= row.slott %></td>
+          <td><%= row.date %></td>
+          <td><%- row.person %></td>
+          <td>
+            <a class="btn btn-danger btn-xs" href="/slot/delete/<%= row._id %>" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></a>
+          </td>
+        </tr>
+        <!-- Modal -->
+
+        <%    
+      })} %>
+      </tbody>
+    </table>
+   
+  
+  </div>
+</div>
+
+<!-- <%- include('footer')%> -->

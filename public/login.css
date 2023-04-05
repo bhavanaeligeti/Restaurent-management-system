@@ -1,0 +1,188 @@
+/*===== GOOGLE FONTS =====*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+*{
+    margin: 3px;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #222831;
+}
+
+.container{
+    position: relative;
+    max-width: 430px;
+    width: 100%;
+    background: #f1f2f3;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.container .rforms{
+    width: 200%;
+    display: flex;
+    align-items: center;
+    height: 643px;
+    transition: height 0.2s ease;
+}
+
+.container .lforms{
+    width: 200%;
+    display: flex;
+    align-items: center;
+    height: 443px;
+    transition: height 0.2s ease;
+}
+
+.container .form{
+    padding: 30px;
+    width: 50%;
+    background-color: #f1f2f3;
+    transition: margin-left 0.18s ease;
+}
+
+.container.active .login{
+    margin-left: -50%;
+    opacity: 0;
+    transition: margin-left 0.18s ease, opacity 0.15s ease;
+}
+
+.container .signup{
+    opacity: 0;
+    transform: opacity 0.09s ease;
+}
+
+.container.active .login{
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.container.active .forms{
+    height: 600px;
+}
+
+.container .form .title{
+    position: relative;
+    font-size: 27px;
+    font-weight: 600;
+}
+
+.form .input-field{
+    position: relative;
+    height: 40px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.input-field input{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 0 35px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    border-bottom: 2px solid #ccc;
+    border-top: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.input-field input:is(:focus, :valid){
+    border-bottom-color: #222831;
+}
+
+.input-field i{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 23px;
+    transition: all 0.2s ease;
+}
+
+.input-field input:is(:focus, :valid)~ i{
+    color: #222831;
+}
+
+.input-field i.icon{
+    left: 0;
+}
+/* eye password */
+/* #eye
+{
+    position: absolute;
+    left: 20rem;
+} */
+.input-field i.showHidePw{
+    position: absolute;
+    left: 20rem;
+}
+
+.form .checkbox-text{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.checkbox-text .checkbox-content{
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-content input{
+    margin: 0 8px -2px 4px;
+    accent-color: #5513ac;
+}
+
+.form .text{
+    color: #333;
+    font-size: 15px;
+}
+
+.form a.text{
+    color: #5513ac;
+    font-size: 15px;
+}
+
+.form a{
+    text-decoration: none;
+}
+
+.form a:hover{
+    text-decoration: underline;
+}
+
+.form .button{
+    margin-top: 35px;
+}
+
+.form .button input{
+    border: none;
+    background-color: #222831;
+    color: #f1f2f3;
+    letter-spacing: 1px;
+    font-size: 17px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button input:hover{
+    background-color: #ffbe33;
+}
+
+.form .login-signup{
+    margin-top: 30px;
+    text-align: center;
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="login.css">
+
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <title>LoginPage</title>
+</head>
+<body>
+    <div class="container">
+        <div class="rforms">        
+
+            <!-- Registration Form -->
+            <div class="form Signup">
+                <span class="title" style="color: #222831;">Create New User</span>
+                 
+                <% if(msg !=''){ %>
+                    <p style="text-align: center; color:#222831 ;" class="alert alert-danger">   <%= msg %></p>
+                    <% } %>
+
+                <form action="/signup" name="myForm"  method="post">
+                    <div class="input-field">
+                        <input type="text" name="uname" id="username" placeholder="Enter your username" required autocomplete="off">
+                        <i class="uil uil-user"></i>
+                        <span id="user"></span>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="text" id="EMail" name="email" placeholder="Enter your email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                        <i class="uil uil-envelope icon"></i>
+                    </div>
+                    
+                    <div class="input-field">
+                        <input type="text" id="phonenumber" name="pnumber"  placeholder="Enter your phone number" maxlength="10" pattern="[6-9]{1}[0,9]{9}" required > 
+                        <i class="uil uil-phone"></i>
+                    </div>
+
+
+                    <div class="input-field">
+                        <input type="password" class="password" name="password" minlength="4" placeholder="Create password" required>
+                        <i class="uil uil-lock icon"></i>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="password" class="password" name="confirmpassword" placeholder="Confirm password" required>
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+
+                    <div class="checkbox-text">
+                        <div class="checkbox-content">
+                            <input type="checkbox" id="logCheck">
+                            <label for="logCheck" class="text">Remember me</label>
+                        </div>
+
+                    </div>
+
+                    <div class="input-field button">
+                        <input type="submit" id="btn2" value="Add New User">
+                    </div>
+                </form>
+ 
+                <div class="login-signup">
+                    <span class="text">Already a member?</span>
+                    <a href="/login" class="text login-link">Login now</a>
+                </div>
+            </div>  
+        </div>
+    </div>
+ 
+    <script>
+        const container = document.querySelector(".container"),
+           pwShowHide = document.querySelectorAll(".showHidePw"),
+           pwFields = document.querySelectorAll(".password");
+         
+         //   js code to show/hide password and change icon
+         pwShowHide.forEach(eyeIcon =>{
+             eyeIcon.addEventListener("click", ()=>{
+                 pwFields.forEach(pwField =>{
+                     console.log("pwField",pwField)
+                     if(pwField.type ==="password"){
+                         pwField.type = "text";
+     
+                         pwShowHide.forEach(icon =>{
+                             icon.classList.replace("uil-eye-slash", "uil-eye");
+                         })
+                     }else{
+                         pwField.type = "password";
+     
+                         pwShowHide.forEach(icon =>{
+                             icon.classList.replace("uil-eye", "uil-eye-slash");
+                         })
+                     }
+                 }) 
+             })
+         })
+     
+     </script>
+</body>
+</html>
