@@ -106,7 +106,7 @@ app.post('/forget', async (req,res)=> {
     });
     userDetails.save((err, doc) => {
       if (err) throw err;
-      res.render('forget',{title:"college dunia", msg:"",succ:'OTP send in your mail',gmail:email,errors:''});
+      res.render('forget',{title:"FineDine", msg:"",succ:'OTP send in your mail',gmail:email,errors:''});
    
     });
     let transporter = nodemailer.createTransport({
@@ -199,7 +199,7 @@ app.post('/forget', async (req,res)=> {
 app.get("/add-new-category", (req, res, next) => {
   var loginUser = localStorage.getItem('loginUser');
   if (loginUser) {
-    res.render('addNewCategory', { title: 'Restaurant Management System', loginUser: loginUser, errors: '', success: '' });
+    res.render('addNewCategory', { title: 'FineDine', loginUser: loginUser, errors: '', success: '' });
   }
   else {
     res.redirect('/login')
