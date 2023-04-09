@@ -112,15 +112,15 @@ app.post('/forget', async (req,res)=> {
     let transporter = nodemailer.createTransport({
       service:"gmail",
       auth : {
-        user:"projectdissertation.universal@gmail.com",
-        pass:"dffvlycylavsfflk"
+        user:"bhavanaeligeti19@gmail.com",
+        pass:"mzgdkkajbziwwvjw"
       },
       tls:{
         rejectUnauthorized:false
       }
     })
     let mailOptions = {
-      from: "projectdissertation.universal@gmail.com",
+      from: "bhavanaeligeti19@gmail.com",
       to: email,
       subject:"OTP for resetting password",
       text:`Forget Password of FineDine is :  ${code}`
@@ -604,9 +604,16 @@ app.get("/dashboard", async (req, res) =>{
   res.redirect('/')
 }
 });
-app.get('/user',(req,res)=> {
+app.get('/user',async(req,res)=> {
   var loginUser = localStorage.getItem('loginUser');
-  res.render('user',{title: 'Restaurent Management System', msg:'',loginUser:loginUser})
+  const userd = userModel.findOne({username:loginUser});
+  try { 
+    let usersdata = await userd.exec() 
+    res.render('user',{title: 'Restaurent Management System', msg:'',loginUser:loginUser, usersdata:usersdata})
+  }
+  catch(err) {
+     throw Error 
+    }
 })
 app.get('/add-cart/edit/:id', function (req, res, next) {
 

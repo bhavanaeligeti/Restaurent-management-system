@@ -12,6 +12,10 @@
 </head>
 
 <body>
+  <% if(records.length>0){
+    records.forEach(function(rows){
+    if(rows.pid == 1000){
+    %>
 
     <h1>Your Cart</h1>
     <form action="/checkout" method="post">
@@ -68,7 +72,7 @@
       <div class="totals">
         <div class="totals-item">
           <label>Subtotal</label>
-          <div class="totals-value" id="cart-subtotal">71.97</div>
+          <div class="totals-value" id="cart-subtotal">0.00</div>
         </div>
         <div class="totals-item">
           <label>Discount </label>
@@ -82,7 +86,7 @@
 
         <div class="totals-item totals-item-total">
           <label>Grand Total</label>
-          <div class="totals-value" id="cart-total" name="price">90.57</div>
+          <div class="totals-value" id="cart-total" name="price">0.00</div>
         </div>
         
       </div>
@@ -90,6 +94,11 @@
         </form>
     
     </div>
+    <% }})} else{ %>
+
+    <h1 style="text-align: center;">Cart is empty</h1>
+    
+    <% }%>
 
   <script>
 var taxRate = 0.05;
