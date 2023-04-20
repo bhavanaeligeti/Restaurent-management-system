@@ -5,7 +5,7 @@ function getYear() {
     document.querySelector("#displayYear").innerHTML = currentYear;
 }
 
-getYear();
+// getYear();
 
 
 // isotope js

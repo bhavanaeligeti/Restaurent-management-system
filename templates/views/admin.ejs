@@ -9,12 +9,30 @@
 		content="width=device-width,
 				initial-scale=1.0">
 	<title>Restaurant Management System</title>
+	
 	<!--==================== UNICONS ====================-->
 	<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 	<link rel="stylesheet"
 		href="check.css">
 	<link rel="stylesheet"
 		href="responsive.css">
+		<style>
+			table {
+			  font-family: arial, sans-serif;
+			  border-collapse: collapse;
+			  width: 100%;
+			}
+			
+			td, th {
+			  border: 1px solid #dddddd;
+			  text-align: left;
+			  padding: 8px;
+			}
+			
+			tr:nth-child(even) {
+			  background-color: #dddddd;
+			}
+			</style>
 </head>
 
 <body>
@@ -152,7 +170,26 @@
 				</div>
 
 					<div class="report-body">
-						<div class="report-topic-heading">
+						<table >
+							<tr>
+								<th>Name</th>
+								<th>Products Name</th>
+								<th>Quantities</th>
+								<th>Price</th>
+							  </tr>
+							  <% if(qtys.length>0){
+								qtys.forEach(function(row){
+								
+								%>
+							  <tr>
+								<td><%= row.username %></td>
+								<td><%= row.pname %></td>
+								<td><%= row.qty %></td>
+								<td><%= row.pprice %></td>
+							  </tr>
+							  <% })} %>
+						
+						<!-- <div class="report-topic-heading">
 
 							
 							<h3 class="t-op">Name</h3>
@@ -161,8 +198,8 @@
 							<h3 class="t-op">Price</h3>
 							
 						</div>
-	 
-						<div class="items">
+	  -->
+						<!-- <div class="items">
 							<% if(qtys.length>0){
 								qtys.forEach(function(row){
 								
@@ -177,7 +214,7 @@
 	 
 							<% })} %>
 	   
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>

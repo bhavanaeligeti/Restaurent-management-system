@@ -12,10 +12,6 @@
 </head>
 
 <body>
-  <% if(records.length>0){
-    records.forEach(function(rows){
-    if(rows.pid == 1000){
-    %>
 
     <h1>Your Cart</h1>
     <form action="/checkout" method="post">
@@ -94,11 +90,6 @@
         </form>
     
     </div>
-    <% }})} else{ %>
-
-    <h1 style="text-align: center;">Cart is empty</h1>
-    
-    <% }%>
 
   <script>
 var taxRate = 0.05;

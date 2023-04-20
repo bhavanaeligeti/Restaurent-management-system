@@ -348,11 +348,15 @@ app.post('/table', function (req, res, next) {
   });
  password_details.save(function (err, doc) {
     if (err) throw err;
-    res.render("book", { title: 'Restaurent Management System', msg:'',success:'Table Booking Successfully' })
+    //res.render("book", { title: 'Restaurent Management System', msg:'',success:'Table Booking Successfully' })
+    res.redirect('/success')
   })
 }
 }) 
    
+app.get('/success', (req, res)=>{
+  res.render('success')
+})
 
 app.get('/view-all-food', function (req, res, next) {
   var loginUser = localStorage.getItem('loginUser');
@@ -528,8 +532,14 @@ app.get("/about", (req, res) =>{
   res.render("about")
 });
 
-app.get("/book", (req, res) =>{
-  res.render("book", { title: 'Restaurent Management System', msg:'',success:'' })
+app.get("/book", async (req, res) =>{
+  const books = slotModel.find({})
+  try{
+    let bookData = await books.exec();
+    res.render("book", { title: 'Restaurent Management System', msg:'',success:'', data:bookData })
+  }catch{err}{
+    throw Error;
+  }
 });
 
 app.post('/checkout',(req,res)=> {
@@ -604,6 +614,8 @@ app.get("/dashboard", async (req, res) =>{
   res.redirect('/')
 }
 });
+
+// user details
 app.get('/user',async(req,res)=> {
   var loginUser = localStorage.getItem('loginUser');
   const userd = userModel.findOne({username:loginUser});
