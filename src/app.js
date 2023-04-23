@@ -669,7 +669,7 @@ app.get("/myorder",async (req, res) =>{
       res.render('myorder',{loginUser:loginUser,qtys:qtys,foods:foods})
     }
     catch(err) {
-      throw Error
+      throw Error;
     }
   }
   else {

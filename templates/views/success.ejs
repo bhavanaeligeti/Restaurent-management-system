@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
  
-    <title>Payment Successfully</title>
+    <title>Table Booked Successfully</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -14,18 +14,19 @@
 body {
 	font-family: 'Varela Round', sans-serif;
 }
-.modal-confirm {		
+/* .modal-confirm {		
 	color: #434e65;
 	width: 525px;
-}
-.modal-confirm .modal-content {
+} */
+/* .modal-confirm .modal-content {
 	padding: 20px;
 	font-size: 16px;
 	border-radius: 5px;
-	/* border: none; */
+	border: none;
 	box-shadow: 30px 40px
-}
-.modal-confirm .modal-header {
+} */
+
+/* .modal-confirm .modal-header {
 	background: #47c9a2;
 	border-bottom: none;   
 	position: relative;
@@ -33,35 +34,35 @@ body {
 	margin: -20px -20px 0;
 	border-radius: 5px 5px 0 0;
 	padding: 35px;
-}
-.modal-confirm h4 {
+} */
+/* .modal-confirm h4 {
 	text-align: center;
 	font-size: 36px;
 	margin: 10px 0;
-}
-.modal-confirm .form-control, .modal-confirm .btn {
+} */
+/* .modal-confirm .form-control, .modal-confirm .btn {
 	min-height: 40px;
 	border-radius: 3px; 
-}
-.modal-confirm .close {
+} */
+/* .modal-confirm .close {
 	position: absolute;
 	top: 15px;
 	right: 15px;
 	color: #fff;
 	text-shadow: none;
 	opacity: 0.5;
-}
-.modal-confirm .close:hover {
+} */
+/* .modal-confirm .close:hover {
 	opacity: 0.8;
-}
+} */
 .modal-confirm .icon-box {
-	color: #fff;		
+	color: #42CE23;		
 	width: 95px;
 	height: 95px;
 	display: inline-block;
 	border-radius: 50%;
 	z-index: 9;
-	border: 5px solid #fff;
+	border: 5px solid #42CE23;
 	padding: 15px;
 	text-align: center;
 }
@@ -75,7 +76,7 @@ body {
 .modal-confirm .btn, .modal-confirm .btn:active {
 	color: #fff;
 	border-radius: 4px;
-	/* background: #eeb711 !important; */
+	background: #42CE23 !important;
 	text-decoration: none;
 	transition: all 0.4s;
 	line-height: normal;
@@ -113,7 +114,7 @@ body {
     
        <div id="myModal" style="display: contents">
         <div class="modal-dialog modal-confirm">
-            <div class="modal-content">
+            <div class="modal-content" style="margin-top: 50%;">
                 <div class="modal-header justify-content-center">
                     <div class="icon-box">
                         <i class="material-icons"></i>
@@ -123,7 +124,7 @@ body {
                 <div class="modal-body text-center">
                     <h4>Table booked Successfully!!</h4>	
                     <!-- <p>Our Team will Contact You.</p> -->
-                    <button class="btn btn-success" ><span><a href="/book" style="    color: white;text-decoration: none;">Continue</a></span> <i class="material-icons"></i></button>
+                    <button class="btn" ><span><a href="/book" style="color: white; text-decoration: none;">Continue</a></span> <i class="material-icons"></i></button>
                 </div>
             </div>
         </div>
