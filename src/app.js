@@ -330,6 +330,7 @@ app.post('/table', function (req, res, next) {
   const date = req.body.date;
   const person = req.body.person;
   const username = loginUser;
+  const t_id = Math.floor((Math.random()*10)+1)
  if(!name || !email || !pnumber || !slotf || !date || !person) {
   res.render("book", { title: 'Restaurent Management System', msg:'Please fill all details',success:'' })
  }
@@ -343,8 +344,8 @@ app.post('/table', function (req, res, next) {
      slotf:slotf,
      date:date,
      person:person,
-     usename:username
-
+     usename:username,
+     t_id:t_id
   });
  password_details.save(function (err, doc) {
     if (err) throw err;

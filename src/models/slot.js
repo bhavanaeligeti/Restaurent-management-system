@@ -35,6 +35,10 @@ const slotSchema = new Schema({
         type:String,
         required:true
     },
+    t_id : {
+        type:Number,
+        required:true
+    },
 
 });
 
