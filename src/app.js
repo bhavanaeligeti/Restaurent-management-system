@@ -793,7 +793,8 @@ app.get('/signup', function(req, res, next) {
   
   })
 
-  app.get('/logout', function(req, res, next) {
+  app.get('/logout', async function(req, res, next) {
+    const appData = foodModel.find({})
     localStorage.removeItem('userToken');
     localStorage.removeItem('loginUser');
     res.redirect('/');

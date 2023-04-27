@@ -114,7 +114,8 @@ tbody, td, tfoot, th, thead, tr {
                 <h2>
                   Hey <%= loginUser %>,
                 </h2>
-             
+                <% if(qtys != null){%>
+
                 <p class="fs-sm">
                   This is the receipt for a payment of your Food Orders.
                 </p>
@@ -177,7 +178,9 @@ tbody, td, tfoot, th, thead, tr {
                   </div>
                 </div>
               </div>
-             
+              <%}else{%>
+                <h1>sbhcsd</h1>
+                <%}%>
             </div>
           </div>
         </div>
